@@ -1,62 +1,91 @@
 # ☕ Chiya Management System
 
-The **Chiya Management System** is a Django-based web application designed to manage day-to-day operations of a tea shop or café.  
-It covers customer management, menu handling, orders, payments, staff records, and feedback in a structured and scalable way.
+The **Chiya Management System** is a Django-based web application designed to streamline the operations of a tea shop or café. It provides a comprehensive set of features to manage customers, menus, orders, payments, staff, and feedback in a structured and scalable way.
 
 ---
 
-##  Features
+## Features
 
-###  Customer Management
-- Store customer details (name, email, phone)
-- Track whether a customer is a returning visitor
-- Collect customer feedback and ratings
+### Customer Management
+- Store and manage customer details (name, email, phone).
+- Track returning customers.
+- Collect and view customer feedback and ratings.
 
-###  Menu Management
-- Categorized food and drink items (Veg, Non-Veg, Drinks, Snacks, Desserts, etc.)
-- Item price, description, and image support
+### Menu Management
+- Organize food and drink items into categories (e.g., Veg, Non-Veg, Drinks, Snacks, Desserts).
+- Manage item details including price, description, and images.
 
-###  Table Management
-- Assign customers to tables
-- Maintain table availability using relations
+### Table Management
+- Assign customers to tables.
+- Track table availability and status.
 
-###  Order & Order Items
-- Create orders per table
-- Add multiple menu items with quantity
-- Track order status (pending/completed)
+### Order Management
+- Create and manage orders for each table.
+- Add multiple items with specified quantities to an order.
+- Monitor order status (e.g., pending, completed).
 
-###  Payment System
-- Record payments per order
-- Track paid/unpaid status
-- Store payment date and amount
+### Payment System
+- Record and track payments for each order.
+- Manage payment status (e.g., paid, unpaid).
+- Store payment details including date and amount.
 
-###  Staff Management
-- Maintain staff personal, contact, and address details
-- Auto-generate unique staff IDs
-- Secure document storage for staff records
+### Staff Management
+- Maintain comprehensive staff records (personal, contact, and address details).
+- Automatically generate unique IDs for staff members.
+- Securely store documents related to staff.
+
+---
+
+## Getting Started
+
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+- Python 3.8+
+- pip
+
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/CODE-WITH-AMUL/MithoChiya.git
+    cd MithoChiya
+    ```
+
+2.  **Create a virtual environment and activate it (optional but recommended):**
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
+
+3.  **Install the required dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+### Database Setup
+
+1.  **Apply migrations to create the database schema:**
+    ```bash
+    python manage.py makemigrations
+    python manage.py migrate
+    ```
+
+### Running the Application
+
+1.  **Start the development server:**
+    ```bash
+    python manage.py runserver
+    ```
+    The application will be available at `http://127.0.0.1:8000/`.
 
 
-### Clone the Repository
 
-bash ```
-git clone https://github.com/CODE-WITH-AMUL/MithoChiya.git
+---
 
-cd MithoChiya
-```
+## Contributing
 
-### Install Dependencies
-bash ```
-pip install -r requirements.txt
-```
+Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
 
-### Run Migrations
-bash ```
-python manage.py makemigrations
-python manage.py migrate
-```
-
-### Run Server
-bash ```
-python manage.py runserver
-```
-
+---
