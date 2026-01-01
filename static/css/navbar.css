@@ -1,0 +1,143 @@
+        :root {
+            --brand-primary: #2C1B12; /* Deep Espresso */
+            --brand-gold: #C5A059;    /* Muted Luxury Gold */
+            --brand-light: #F9F7F2;   /* Silk/Cream Background */
+            --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--brand-light);
+            color: var(--brand-primary);
+            overflow-x: hidden;
+        }
+
+        /* --- Premium Floating Navbar --- */
+        .navbar {
+            padding: 25px 0;
+            transition: var(--transition-smooth);
+            background: transparent;
+            border-bottom: 1px solid transparent;
+        }
+
+        /* State when scrolling starts */
+        .navbar.scrolled {
+            padding: 12px 0;
+            background: rgba(255, 255, 255, 0.85) !important;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        /* Logo Styling */
+        .navbar-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -1px;
+            color: var(--brand-primary) !important;
+            transition: var(--transition-smooth);
+        }
+
+        .navbar-brand span {
+            color: var(--brand-gold);
+            font-style: italic;
+        }
+
+        /* --- Navigation Links --- */
+        .nav-link {
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--brand-primary) !important;
+            margin: 0 15px;
+            position: relative;
+            opacity: 0.8;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+            color: var(--brand-gold) !important;
+        }
+
+        /* Elegant Line Under Animation */
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 1.5px;
+            background: var(--brand-gold);
+            transition: var(--transition-smooth);
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        /* --- Premium CTA Button --- */
+        .btn-premium {
+            background: var(--brand-primary);
+            color: #fff !important;
+            border: none;
+            border-radius: 0; /* Professional sharp edges or very slight rounding */
+            padding: 12px 30px !important;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            box-shadow: 10px 10px 0px rgba(197, 160, 89, 0.1);
+        }
+
+        .btn-premium:hover {
+            background: var(--brand-gold);
+            transform: translate(-3px, -3px);
+            box-shadow: 15px 15px 0px rgba(44, 27, 18, 0.1);
+        }
+
+        /* --- Dropdown Enhancement --- */
+        .dropdown-menu {
+            border: none;
+            background: #fff;
+            border-radius: 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            margin-top: 15px !important;
+        }
+
+        .dropdown-item {
+            font-weight: 400;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: var(--transition-smooth);
+        }
+
+        .dropdown-item:last-child { border: none; }
+
+        .dropdown-item:hover {
+            background: transparent;
+            color: var(--brand-gold);
+            padding-left: 10px;
+        }
+
+        /* Mobile Menu */
+        .navbar-toggler {
+            border: none;
+            padding: 0;
+        }
+
+        .navbar-toggler:focus { box-shadow: none; }
+
+        @media (max-width: 991px) {
+            .navbar { background: #fff !important; padding: 15px 0; }
+            .nav-link { margin: 10px 0; }
+            .btn-premium { width: 100%; margin-top: 20px; text-align: center; }
+        }

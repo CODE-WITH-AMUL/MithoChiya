@@ -78,11 +78,10 @@ class Table(TimeStampModel):
 class MenuItem(TimeStampModel):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
-    category = models.CharField(
-        max_length=50, choices=FOOD_ITEM_CATEGORY
-    )
+    category = models.CharField(max_length=50, choices=FOOD_ITEM_CATEGORY)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField(upload_to='food_items/')
+    image = models.ImageField(upload_to='food_items/', blank=True, null=True)
+    is_available = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name

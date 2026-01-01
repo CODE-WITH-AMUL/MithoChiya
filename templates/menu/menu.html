@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mitho Chiya | Digital Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f4f4f4;
+        }
+
+        /* MENU CARD */
+        .menu-card {
+            border: none;
+            border-radius: 14px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            background: #fff;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+        }
+
+        .menu-card img {
+            height: 140px;
+            object-fit: cover;
+        }
+
+        /* ORDER BOX */
+        .order-box {
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            padding: 20px;
+            position: sticky;
+            top: 90px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .qty-btn {
+            border: none;
+            background: #000;
+            color: #fff;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            font-size: 14px;
+            line-height: 26px;
+            text-align: center;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #dc3545;
+            font-size: 14px;
+        }
+
+        .total-box {
+            font-size: 18px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container mt-5 mb-5">
+    <div class="row g-4">
+
+        <!-- MENU -->
+        <div class="col-lg-8">
+            <h3 class="mb-4">☕ Mitho Chiya Menu</h3>
+
+            <div class="row g-4">
+                {% for item in items %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="menu-card p-3"
+                         onclick="addItem('{{ item.id }}', '{{ item.name }}', {{ item.price }})">
+
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" class="img-fluid rounded mb-3" alt="{{ item.name }}">
+                        {% endif %}
+
+                        <h6 class="fw-semibold">{{ item.name }}</h6>
+                        <p class="text-muted mb-0">Rs {{ item.price }}</p>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-muted">No items available.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- ORDER -->
+        <div class="col-lg-4">
+            <div class="order-box">
+                <h5 class="mb-3">🧾 Current Order</h5>
+
+                <div id="orderItems" class="mb-3 text-muted">
+                    No items added
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-between total-box">
+                    <span>Total</span>
+                    <span>Rs <span id="totalAmount">0</span></span>
+                </div>
+
+                <button class="btn btn-dark w-100 mt-3" onclick="submitOrder()">
+                    Place Order
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let order = {};
+
+    function addItem(id, name, price) {
+        if (order[id]) {
+            order[id].qty += 1;
+        } else {
+            order[id] = { name, price, qty: 1 };
+        }
+        renderOrder();
+    }
+
+    function updateQty(id, change) {
+        order[id].qty += change;
+        if (order[id].qty <= 0) delete order[id];
+        renderOrder();
+    }
+
+    function renderOrder() {
+        const container = document.getElementById("orderItems");
+        container.innerHTML = "";
+        let total = 0;
+        let hasItems = false;
+
+        for (const id in order) {
+            hasItems = true;
+            const item = order[id];
+            const itemTotal = item.price * item.qty;
+            total += itemTotal;
+
+            container.innerHTML += `
+                <div class="order-item">
+                    <div>
+                        <strong>${item.name}</strong><br>
+                        <small class="text-muted">Rs ${item.price}</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="qty-btn" onclick="updateQty('${id}', -1)">-</button>
+                        ${item.qty}
+                        <button class="qty-btn" onclick="updateQty('${id}', 1)">+</button>
+                        <button class="remove-btn" onclick="updateQty('${id}', -${item.qty})">✕</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        if (!hasItems) {
+            container.innerHTML = "<span class='text-muted'>No items added</span>";
+        }
+
+        document.getElementById("totalAmount").innerText = total;
+    }
+
+    function submitOrder() {
+        if (Object.keys(order).length === 0) {
+            alert("Please add items to the order.");
+            return;
+        }
+
+        console.log("Order Data:", order);
+        alert("Order ready to be sent to backend.");
+        // NEXT STEP: send order via fetch() to Django
+    }
+</script>
+
+</body>
+</html>
