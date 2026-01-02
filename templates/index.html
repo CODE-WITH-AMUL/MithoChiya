@@ -4,612 +4,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mitho Chiya - Authentic Nepali Tea Experience</title>
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <title>Mitho Chiya | Authentic Nepali Tea & Himalayan Culture</title>
+    <meta name="description" content="Experience the finest Ilam tea, Masala Chiya, and traditional Nepali snacks at Mitho Chiya. Authentic taste of Nepal in every cup.">
+    <meta name="keywords" content="Nepali Tea, Ilam Tea, Masala Chiya, Nepali Snacks, Tea Shop Kathmandu">
+    <meta name="author" content="Mitho Chiya">
+    
+    <meta property="og:title" content="Mitho Chiya - Authentic Nepali Tea Experience">
+    <meta property="og:description" content="Bringing the misty hills of Ilam to your cup.">
+    <meta property="og:image" content="{% static 'images/og-preview.jpg' %}">
+    <meta property="og:type" content="website">
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --primary-color: #d97706;
-            --primary-dark: #b45309;
-            --secondary-color: #1e293b;
-            --accent-color: #f59e0b;
-            --light-bg: #fefce8;
+            --brand-gold: #f59e0b;
+            --brand-gradient: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            --dark-surface: #0f172a;
+            --glass: rgba(255, 255, 255, 0.03);
+            --soft-white: #f8fafc;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            color: #374151;
-            line-height: 1.6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #ffffff;
+            color: #334155;
+            scroll-behavior: smooth;
         }
 
-        /* HERO SECTION IMPROVEMENTS */
+
+        /* --- HERO SECTION (The "Cool" Factor) --- */
         .hero {
-            background: linear-gradient(135deg, rgba(185, 28, 28, 0.85) 0%, rgba(217, 119, 6, 0.85) 100%),
-                        url("{% static 'images/tea-bg.jpg' %}") center/cover no-repeat;
-            min-height: 95vh;
+            position: relative;
+            background: #0f172a;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            color: white;
-            position: relative;
             overflow: hidden;
+            padding-top: 80px;
         }
 
-        .hero::before {
-            content: '';
+        .hero::after {
+            content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.3) 100%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.15) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            z-index: 1;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
+        .hero-content { z-index: 10; position: relative; }
 
         .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, #fef3c7 100%);
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .hero h1 span {
+            background: var(--brand-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
-        .hero-subtitle {
-            font-size: 1.25rem;
-            font-weight: 300;
-            color: #fef3c7;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-btn {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            border: none;
-            padding: 1rem 2.5rem;
-            font-weight: 600;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3);
-        }
-
-        .hero-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(217, 119, 6, 0.4);
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-        }
-
-        /* SECTION COMMON STYLES */
-        .section-padding {
-            padding: 6rem 0;
-        }
-
-        .section-title {
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--primary-color);
-            border-radius: 2px;
-        }
-
-        .section-subtitle {
-            color: #6b7280;
-            font-size: 1.125rem;
-            margin-bottom: 3rem;
-            max-width: 700px;
-        }
-
-        /* ABOUT SECTION IMPROVEMENTS */
-        .about-section {
-            background-color: var(--light-bg);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, rgba(217, 119, 6, 0.1) 0%, rgba(254, 243, 199, 0.1) 100%);
-            border-radius: 50%;
-            transform: translate(150px, -150px);
-        }
-
-        .about-img {
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover {
-            transform: scale(1.02);
-        }
-
-        .about-content {
-            padding-left: 3rem;
-        }
-
-        .about-features {
-            margin-top: 2rem;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-icon {
-            background: var(--primary-color);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            flex-shrink: 0;
-        }
-
-        /* SERVICES SECTION IMPROVEMENTS */
-        .services-section {
-            background: white;
-        }
-
+        /* --- PREMIUM CARDS --- */
         .service-card {
-            border: none;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
+            border: 1px solid #e2e8f0;
             background: white;
-            height: 100%;
-            padding: 2.5rem 2rem;
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(217, 119, 6, 0.15);
+            border-color: var(--brand-gold);
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px -12px rgba(217, 119, 6, 0.15);
         }
 
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .service-title {
-            font-weight: 700;
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-        }
-
-        /* CALL TO ACTION IMPROVEMENTS */
-        .cta-section {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, #0f172a 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("{% static 'images/pattern.svg' %}") repeat;
-            opacity: 0.05;
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .cta-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .cta-subtitle {
-            color: #cbd5e1;
-            font-size: 1.125rem;
-            margin-bottom: 2rem;
-        }
-
-        .cta-btn {
-            background: transparent;
-            border: 2px solid var(--primary-color);
-            color: white;
-            padding: 0.875rem 2.5rem;
-            font-weight: 600;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-btn:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(217, 119, 6, 0.3);
-        }
-
-        /* FOOTER IMPROVEMENTS */
-        footer {
-            background: #0f172a;
-            color: #94a3b8;
-            padding: 3rem 0 2rem;
-        }
-
-        .footer-content {
-            text-align: center;
-        }
-
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
-
-        .footer-text {
-            color: #94a3b8;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
+        .service-icon-box {
+            width: 70px;
+            height: 70px;
+            background: #fff7ed;
+            color: var(--brand-gold);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #cbd5e1;
-            text-decoration: none;
-            transition: all 0.3s ease;
+            border-radius: 18px;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
         }
 
-        .social-link:hover {
-            background: var(--primary-color);
+        /* --- CTA SECTION --- */
+        .cta-modern {
+            background: var(--dark-surface);
+            border-radius: 40px;
+            padding: 5rem;
             color: white;
-            transform: translateY(-3px);
+            margin: 4rem 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
-        .copyright {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 2rem;
-            color: #64748b;
+        .btn-premium {
+            background: var(--brand-gradient);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            border: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* RESPONSIVE ADJUSTMENTS */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .about-content {
-                padding-left: 0;
-                margin-top: 2rem;
-            }
-            
-            .section-padding {
-                padding: 4rem 0;
-            }
-            
-            .cta-title {
-                font-size: 2rem;
-            }
-        }
-
-        /* ANIMATIONS */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fade-in {
-            animation: fadeInUp 0.8s ease-out;
+        .btn-premium:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(217, 119, 6, 0.4);
+            color: white;
         }
     </style>
 </head>
-
 <body>
 
-<!-- Navbar -->
 {% include 'component/navbar.html' %}
 
-<!-- HERO SECTION -->
 <section class="hero">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center hero-content animate-fade-in">
-                <h1>Mitho Chiya</h1>
-                <p class="hero-subtitle">
-                    Experience the authentic taste of Nepali tea culture. Freshly brewed traditional tea, 
-                    homemade snacks, and warm Himalayan hospitality in every cup.
-                </p>
-                <div class="mt-5">
-                    <a href="#" class="btn hero-btn">
-                        <i class="bi bi-cup-hot me-2"></i>Explore Our Menu
-                    </a>
-                </div>
-                <div class="mt-5">
-                    <a href="#about" class="text-white text-decoration-none d-inline-flex align-items-center">
-                        <i class="bi bi-chevron-down me-2"></i>Discover More
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ABOUT SECTION -->
-<section id="about" class="about-section section-padding">
-    <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6 mb-5 mb-lg-0">
-                <img src="{% static 'images/about-tea.jpg' %}" class="img-fluid about-img" alt="Traditional Nepali Tea Preparation">
+            <div class="col-lg-7 hero-content">
+                <span class="badge rounded-pill bg-warning bg-opacity-10 text-warning px-3 py-2 mb-3">
+                    🏔️ Pure Himalayan Bliss
+                </span>
+                <h1>Crafting the <br><span>Perfect Sip</span></h1>
+                <p class="lead text-light opacity-75 mb-5 fs-4">
+                    Experience Mitho Chiya—where ancient Nepali tea traditions meet modern soul. Sourced from Ilam, brewed for you.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="{% url 'menu' %}" class="btn btn-premium">View Menu</a>
+                    <a href="#about" class="btn btn-outline-light rounded-pill px-4">Our Story</a>
+                </div>
             </div>
-            <div class="col-lg-6 about-content">
-                <h2 class="section-title">Our Story</h2>
-                <p class="fs-5 mb-4 text-secondary">
-                    Mitho Chiya isn't just a tea shop—it's a celebration of Nepal's rich tea heritage. 
-                    Born from a passion for authentic flavors and warm hospitality.
-                </p>
-                <p class="mb-4">
-                    We source our tea leaves directly from the misty hills of Ilam, ensuring every cup 
-                    carries the essence of the Himalayas. Our snacks are prepared using traditional 
-                    recipes passed down through generations.
-                </p>
-                
-                <div class="about-features">
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="bi bi-award"></i>
-                        </div>
-                        <div>
-                            <h5 class="fw-semibold">Authentic Taste</h5>
-                            <p class="text-muted mb-0">Traditional recipes unchanged for generations</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="bi bi-leaf"></i>
-                        </div>
-                        <div>
-                            <h5 class="fw-semibold">Fresh Ingredients</h5>
-                            <p class="text-muted mb-0">Locally sourced, organic tea leaves</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="bi bi-heart"></i>
-                        </div>
-                        <div>
-                            <h5 class="fw-semibold">Warm Hospitality</h5>
-                            <p class="text-muted mb-0">Experience genuine Nepali warmth</p>
-                        </div>
-                    </div>
+            <div class="col-lg-5 d-none d-lg-block">
+                <div class="position-relative">
+                    <img src="{% static 'logo/log-removebg-preview.png' %}" alt="Nepali Tea" class="img-fluid animate-float">
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- SERVICES SECTION -->
-<section class="services-section section-padding">
+<section class="py-5 my-5">
     <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="section-title">What We Offer</h2>
-            <p class="section-subtitle">
-                A complete experience that engages all your senses
-            </p>
-        </div>
-
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="service-card text-center">
-                    <div class="service-icon">
-                        <i class="bi bi-cup-hot"></i>
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <i class="bi bi-cup-hot-fill"></i>
                     </div>
-                    <h4 class="service-title">Traditional Tea Selection</h4>
-                    <p class="text-muted">
-                        From strong Masala Chiya to delicate Ilam Orthodox, each brew tells a story of Nepal's diverse tea regions.
-                    </p>
-                    <div class="mt-3">
-                        <span class="badge bg-primary bg-opacity-10 text-primary">10+ Varieties</span>
-                    </div>
+                    <h3>Ilam Orthodox</h3>
+                    <p>Hand-picked leaves from the high-altitude gardens of Eastern Nepal, offering a floral and delicate aroma.</p>
                 </div>
             </div>
-
             <div class="col-md-4">
-                <div class="service-card text-center">
-                    <div class="service-icon">
-                        <i class="bi bi-basket"></i>
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <i class="bi bi-fire"></i>
                     </div>
-                    <h4 class="service-title">Homemade Snacks</h4>
-                    <p class="text-muted">
-                        Freshly prepared local delicacies including Sel Roti, Momos, and traditional sweets made daily.
-                    </p>
-                    <div class="mt-3">
-                        <span class="badge bg-primary bg-opacity-10 text-primary">Fresh Daily</span>
-                    </div>
+                    <h3>Masala Infusion</h3>
+                    <p>Our secret family blend of ginger, cardamom, and black pepper simmered with rich milk.</p>
                 </div>
             </div>
-
             <div class="col-md-4">
-                <div class="service-card text-center">
-                    <div class="service-icon">
-                        <i class="bi bi-people"></i>
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <i class="bi bi-sun"></i>
                     </div>
-                    <h4 class="service-title">Community Space</h4>
-                    <p class="text-muted">
-                        A welcoming environment perfect for conversations, work, or simply enjoying peaceful moments.
-                    </p>
-                    <div class="mt-3">
-                        <span class="badge bg-primary bg-opacity-10 text-primary">Free Wi-Fi</span>
-                    </div>
+                    <h3>Daily Sel Roti</h3>
+                    <p>Traditional rice-flour donuts, crispy on the outside and soft inside. Made fresh every morning.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- CALL TO ACTION -->
-<section class="cta-section section-padding">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center cta-content">
-                <h2 class="cta-title">Ready for an Authentic Experience?</h2>
-                <p class="cta-subtitle">
-                    Visit us today and taste the difference. Whether you're a tea connoisseur or 
-                    trying Nepali tea for the first time, we promise an unforgettable experience.
-                </p>
-                <div class="mt-4">
-                    <a href="#" class="btn cta-btn me-3">
-                        <i class="bi bi-calendar-check me-2"></i>Book a Visit
-                    </a>
-                    <a href="#" class="btn cta-btn">
-                        <i class="bi bi-telephone me-2"></i>Contact Us
-                    </a>
-                </div>
-                <p class="mt-4 text-light opacity-75">
-                    <i class="bi bi-clock me-1"></i> Open Daily: 7:00 AM - 9:00 PM
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
+<div class="container">
+    <section class="cta-modern text-center">
+        <h2 class="display-4 fw-bold mb-4">Visit Our Tea Home</h2>
+        <p class="mb-5 opacity-75">Open daily from 7:00 AM to 9:00 PM. Locate us in the heart of the city.</p>
+        <button class="btn btn-premium">Find Us on Map</button>
+    </section>
+</div>
 
-<!-- FOOTER -->
-<footer>
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-logo">Mitho Chiya</div>
-            <p class="footer-text">
-                Bringing the authentic taste of Nepali tea culture to your neighborhood. 
-                Quality, tradition, and warmth in every cup.
-            </p>
-            
-            <div class="social-links">
-                <a href="#" class="social-link">
-                    <i class="bi bi-facebook"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="bi bi-instagram"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="bi bi-twitter"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="bi bi-geo-alt"></i>
-                </a>
-            </div>
-            
-            <div class="copyright">
-                <small>
-                    © {{ now|date:"Y" }} Mitho Chiya. All rights reserved. | 
-                    Crafted with <i class="bi bi-heart-fill text-danger mx-1"></i> in Nepal
-                </small>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-    // Simple scroll animation
-    document.addEventListener('DOMContentLoaded', function() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe service cards
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-    });
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Mitho Chiya",
+  "image": "{% static 'logo/log.png' %}",
+  "description": "Authentic Nepali Tea Shop",
+  "servesCuisine": "Nepali",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kathmandu",
+    "addressCountry": "NP"
+  }
+}
 </script>
 
 </body>

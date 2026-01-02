@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>मिठो चिया | Management</title>
+    <title>Mitho Chiya</title>
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
@@ -127,10 +127,10 @@
 <nav class="navbar">
     <i class="uil uil-bars menu-btn" id="menuBtn"></i>
 
-    <a href="#" class="logo">मिठो चिया</a>
+    <a href="{% url 'index' %}" class="logo">मिठो चिया</a>
 
     <ul class="nav-links" id="navLinks">
-        <li><a href="#">Home</a></li>
+        <li><a href="{% url 'index' %}">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="{% url 'menu' %}">Menu</a></li>
         <li><a href="#">Contact us</a></li>
