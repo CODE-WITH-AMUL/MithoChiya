@@ -11,14 +11,14 @@ MOBILE_NUMBER_CODE = (
     ('+92', '+92'),
 )
 
-FOOD_ITEM_CATEGORY = (
-    ('veg', 'Veg'),
-    ('non_veg', 'Non Veg'),
-    ('drinks', 'Drinks'),
+CATEGORY_LIST = (
+    ('tea', 'Tea'),
     ('snacks', 'Snacks'),
     ('desserts', 'Desserts'),
-    ('beverage', 'Beverage'),
+    ('beverages', 'Beverages'),
+    
 )
+
 
 
 
@@ -75,16 +75,25 @@ class Table(TimeStampModel):
 # MENU / FOOD ITEM
 # ---------------------------
 
+
+
+
 class MenuItem(TimeStampModel):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
-    category = models.CharField(max_length=50, choices=FOOD_ITEM_CATEGORY)
+    category = models.CharField(max_length=20, choices=CATEGORY_LIST)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to='food_items/', blank=True, null=True)
     is_available = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
+
+    @property
+    def image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
+        return None
 
 
 # ---------------------------
@@ -93,7 +102,7 @@ class MenuItem(TimeStampModel):
 
 class Order(TimeStampModel):
     table = models.ForeignKey(
-        Table, on_delete=models.CASCADE
+        Table, on_delete=models.CASCADE, null=True, blank=True
     )
     customer = models.ForeignKey(
         Customer, on_delete=models.SET_NULL, null=True, blank=True

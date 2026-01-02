@@ -41,7 +41,7 @@
 </div>
 
 <!-- Search & Filter Bar -->
-<form method="get" action="{% url 'search_items' %}">
+<form method="get" action="{% url 'menu' %}">
 <div class="sticky-controls">
     <div class="container">
         <div class="row align-items-center g-3">
@@ -59,23 +59,16 @@
             </div>
             <div class="col-lg-5">
                 <div class="filter-group" id="filterGroup">
-                    <input type="hidden" name="category" id="categoryInput" value="all">
-                    <button type="button" class="filter-btn active" onclick="filterCategory('all')" data-category="all">
+                    <button type="submit" name="category" value="" class="filter-btn {% if not selected_category %}active{% endif %}">
                         <i class="bi bi-grid"></i>
                         <span>All Items</span>
                     </button>
-                    <button type="button" class="filter-btn" onclick="filterCategory('tea')" data-category="tea">
+                    {% for category in categories %}
+                    <button type="submit" name="category" value="{{ category.slug }}" class="filter-btn {% if selected_category == category.slug %}active{% endif %}">
                         <i class="bi bi-cup-hot"></i>
-                        <span>Tea</span>
+                        <span>{{ category.name }}</span>
                     </button>
-                    <button type="button" class="filter-btn" onclick="filterCategory('snacks')" data-category="snacks">
-                        <i class="bi bi-egg-fried"></i>
-                        <span>Snacks</span>
-                    </button>
-                    <button type="button" class="filter-btn" onclick="filterCategory('coffee')" data-category="coffee">
-                        <i class="bi bi-cup-straw"></i>
-                        <span>Coffee</span>
-                    </button>
+                    {% endfor %}
                 </div>
             </div>
         </div>
